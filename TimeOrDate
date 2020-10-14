@@ -1,0 +1,17 @@
+From COVID Watch List / watch list table
+
+032019 = 
+CALCULATE(
+SUM('ahi sales'[SALES]),
+FILTER ('CALENDARLOOKUP', 'CALENDARLOOKUP'[DATE].[YEAR] IN {2019}),
+FILTER ('CALENDARLOOKUP', 'CALENDARLOOKUP'[DATE].[MONTH] IN {"March"})
+)
+
+From DASHBOARD / Measure Table table
+
+BCAFT = 
+CALCULATE(
+SUM('FY20 AHI daily'[Sales]).
+FILTER ('FY20 AHI daily', 'FY20 AHI daily'[HB] IN {"AFT"}),
+FILTER('FY20 AHI daily', 'FY20 AHI daily'[Invoice Date] < TODAY () - 365)
+)
