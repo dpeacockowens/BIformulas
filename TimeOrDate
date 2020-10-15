@@ -43,3 +43,25 @@ MonthKey =
  (YEAR('Date'[Date]) * 100) + MONTH('Date'[Date])
 
  This formula computes a numeric value for each year/month combination.
+ 
+ 
+ 
+ YTD Total Sales = TOTALYTD 
+( 
+    SUM('Sales OrderDetails'[Total Price]) 
+    , Dates[Date]
+)
+The YTD Total Sales measure uses a built-in DAX function called TOTALYTD. This function takes an argument for the type of calculation. You can use the SUM function to get the Total Price, as you've done throughout this module. The second argument that you want to operate over is the Dates field. You can use your Dates table and add this measure to your visual, and you'll get the running total result that you're looking for. You can use all functions with YTD, MTD, and QTD in a similar fashion.
+
+
+Another example of working with time would be comparing your current sales with the sales of a previous time period. For instance, if you want to see the total sales of the month next to the total sales of the prior month, you would enter the DAX measure definition, as shown in the following example:
+
+Total Sales Previous Month = CALCULATE
+(
+    sum('Sales OrderDetails'[Total Price])
+    , PREVIOUSMONTH(Dates[Date])
+)
+
+This measure uses the CALCULATE function, indicating that you're overriding the context to evaluate this expression the way that you want to. You're summing Total Price, as you've been doing throughout this module. For the second argument, you're using PREVIOUSMONTH for the override, which tells Power BI that, no matter what month is the default, the system should override it to be the previous month.
+
+
