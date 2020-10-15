@@ -15,3 +15,8 @@ SUM('FY20 AHI daily'[Sales]).
 FILTER ('FY20 AHI daily', 'FY20 AHI daily'[HB] IN {"AFT"}),
 FILTER('FY20 AHI daily', 'FY20 AHI daily'[Invoice Date] < TODAY () - 365)
 )
+
+Last Inventory Count =
+CALCULATE (
+    SUM ( 'Warehouse'[Inventory Count] ),
+    LASTDATE ( 'Date'[Date] ))
