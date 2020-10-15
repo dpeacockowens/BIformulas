@@ -16,7 +16,10 @@ FILTER ('FY20 AHI daily', 'FY20 AHI daily'[HB] IN {"AFT"}),
 FILTER('FY20 AHI daily', 'FY20 AHI daily'[Invoice Date] < TODAY () - 365)
 )
 
+This approach will stop the SUM from crossing all dates. Instead, you will only use the SUM function on the last date of the time period, thus effectively creating a semi-additive measure.
 Last Inventory Count =
 CALCULATE (
     SUM ( 'Warehouse'[Inventory Count] ),
     LASTDATE ( 'Date'[Date] ))
+
+
