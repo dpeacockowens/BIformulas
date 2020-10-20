@@ -65,3 +65,20 @@ Total Sales Previous Month = CALCULATE
 This measure uses the CALCULATE function, indicating that you're overriding the context to evaluate this expression the way that you want to. You're summing Total Price, as you've been doing throughout this module. For the second argument, you're using PREVIOUSMONTH for the override, which tells Power BI that, no matter what month is the default, the system should override it to be the previous month.
 
 
+
+
+https://dax.guide/datesinperiod/#
+Sales Moving Annual Total =
+CALCULATE (
+    [Sales Amount],
+    DATESINPERIOD (
+        'Date'[Date],
+        MAX ( 'Date'[Date] ),
+        -1,
+        YEAR
+    )
+)
+
+
+
+
