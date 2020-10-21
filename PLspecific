@@ -1,0 +1,27 @@
+Static Field Names:
+Manu#
+PVS#
+InvDate
+Desc
+Units
+Sales
+CustType
+Customer
+GM$
+HB
+Major
+Manufacturer
+Minor
+Rep
+Region
+
+
+
+
+
+
+SO to Region
+= Excel.Workbook(File.Contents("C:\Users\dpeacoc2\OneDrive - Patterson Companies, Inc\1D Power BI stuff\MAIN DATA SOURCES\VENDOR MASTER SPREADSHEET.xlsx"), null, true)
+
+SO Code to Region AHI
+SO Region PVS
