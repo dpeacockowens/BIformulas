@@ -80,5 +80,7 @@ CALCULATE (
 )
 
 
+But did you know you can do =TEXT(<dateCell>,"Mmmm") to get a flat text value for the month, "YYYY" for a flat text 4-digit year, "Mmmm YYYY" for "November 2020", etc? 
 
+And you can use =Text(Value(<dateCell>),...) to make it work with the text date format that SAP usually spits out. 
 
