@@ -16,3 +16,10 @@ SUM(SALES[SALES] - [TARGET])
 )
 
 
+In Customer Sales by Units - wanted to count the number of times a sale had a certain # of units purchased.  Set the filter for the page to last 12 months.
+Sales20 = 
+CALCULATE (
+COUNTA ( Sales[INVOICE DATE] ),
+FILTER(Sales,Sales[UNITS] = 20
+))
+
