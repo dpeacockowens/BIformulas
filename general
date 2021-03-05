@@ -23,3 +23,28 @@ COUNTA ( Sales[INVOICE DATE] ),
 FILTER(Sales,Sales[UNITS] = 20
 ))
 
+If we want to get the total sales of China and USA on July and August, we can use following formula.
+SalesFromChina_OR_USA = 
+CALCULATE (
+    SUM ( Table1[Sales] ),
+    FILTER ( Table1, OR ( Table1[Country] = "China", Table1[Country] = "USA" ) )
+)
+
+If we want to get the total sales of China on July, we can use following formula.
+SalesFromChina_July = 
+CALCULATE (
+    SUM ( Table1[Sales] ),
+    FILTER ( Table1, AND ( Table1[Country] = "China", MONTH ( Table1[Date] ) = 7 ) )
+)
+
+If we want to get the total sales of India on July and August, we can use following formula.
+SalesFromIndia = 
+CALCULATE (
+    SUM ( Table1[Sales] ),
+    FILTER (
+        Table1,
+        NOT (
+            OR ( Table1[Country] = "China", Table1[Country] = "USA" )
+        )
+    )
+)
