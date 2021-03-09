@@ -48,3 +48,15 @@ CALCULATE (
         )
     )
 )
+
+
+Animal Rx = 
+CALCULATE(
+	COUNTA('Comprehensive NDC SPL Data Elements File'[Proprietary Name]),
+	'Comprehensive NDC SPL Data Elements File'[Product Type]
+		IN { "PRESCRIPTION ANIMAL DRUG" ,
+"OTC ANIMAL DRUG",
+"ANIMAL COMPOUNDED DRUG",
+"BULK INGREDIENT - ANIMAL DRUG",
+"VFD TYPE A MEDICATED ARTICLE ANIMAL DRUG"}
+)
