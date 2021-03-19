@@ -84,3 +84,32 @@ But did you know you can do =TEXT(<dateCell>,"Mmmm") to get a flat text value fo
 
 And you can use =Text(Value(<dateCell>),...) to make it work with the text date format that SAP usually spits out. 
 
+Date of Last Refresh:
+
+https://www.enhansoft.com/how-to-add-the-last-refreshed-date-and-time-to-a-power-bi-report/
+
+On the Query Editor window, from the Home ribbon, click on the New Source option. Next, select Blank Query.
+Under the Queries section, right-click on the newly created Query1 (1) and select Rename (2).
+In this example, I renamed the query to Date Last Refreshed.  ***if using different field name, change script below.
+Now click on the Advanced Editor option, from the Home ribbon, and paste the M code (see below).
+
+let
+
+Source = #table(type table[Date Last Refreshed=datetime], {{DateTime.LocalNow()}})
+
+in
+
+Source
+
+The M code creates a column with the name Date Last Refreshed and it gathers the current date and time.
+
+to add a different timezone, add a customer column and use #duration to change the time
+= Table.AddColumn(Source, "Custom", each [Date Last Refreshed] - #duration(0, 6, 0, 0))
+
+using the customer maker,  do  =[Date Last Refreshed] - #duration(0, 6, 0, 0)
+
+used in PVS Current Inventory dataset
+
+
+
+
