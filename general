@@ -60,3 +60,9 @@ CALCULATE(
 "BULK INGREDIENT - ANIMAL DRUG",
 "VFD TYPE A MEDICATED ARTICLE ANIMAL DRUG"}
 )
+
+
+
+examples from concatenate in power query editor for new column
+
+= Table.AddColumn(#"Changed Type", "Merged", each Text.Combine({Text.From([Plant], "en-US"), " ", Text.From([Material Number], "en-US")}), type text)
