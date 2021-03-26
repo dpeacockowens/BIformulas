@@ -111,5 +111,21 @@ using the customer maker,  do  =[Date Last Refreshed] - #duration(0, 6, 0, 0)
 used in PVS Current Inventory dataset
 
 
+COMPARING PRIOR YEAR TO CURRENT YEAR BY DATE
+FY19Units = 
+CALCULATE(SUM('FY19'[19Units]), 'CALENDARLOOKUP'[FY] IN { 2019 })
+FY19C Units = CALCULATE([FY19Units], FILTER('CALENDARLOOKUP',CALENDARLOOKUP[DATE] < TODAY() - 730))
+FY20Units = 
+CALCULATE(SUM('FY19'[19Units]), 'CALENDARLOOKUP'[FY] IN { 2020 })
+FY20C Units = CALCULATE([FY20Units], FILTER('CALENDARLOOKUP',CALENDARLOOKUP[DATE] < TODAY() - 365))
+
+FY20to19CU = [FY20C Units] - [FY19C Units]
+FY21to20CU = [FY21 Units] - [FY20C Units]
+
+FY20to19% = 
+if ([FY19C Units]>0 && ISBLANK([FY20C Units]), 0, divide([FY20C Units], [FY19C Units],999))
 
 
+
+
+19C20CYOY = DIVIDE(([FY20to19CU]),[FY20C Units])
