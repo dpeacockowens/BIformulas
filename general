@@ -66,3 +66,6 @@ CALCULATE(
 examples from concatenate in power query editor for new column
 
 = Table.AddColumn(#"Changed Type", "Merged", each Text.Combine({Text.From([Plant], "en-US"), " ", Text.From([Material Number], "en-US")}), type text)
+
+multiplication
+Measure 2 = SUMX('PL',PL[Person Billing Rate]*RELATED(ARMS[total]))
