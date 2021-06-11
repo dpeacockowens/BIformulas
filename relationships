@@ -1,6 +1,17 @@
-The preceding screenshot shows an established relationship between the Date and OrderDate columns, as shown by the highlighted line connecting the two. The solid line between the two tables indicates that it is the active relationship, meaning that by default, any slicing on the date table where measures in the Sales data are being displayed will be along the OrderDate column. A dashed relationship exists between the Date and ShipDate columns, indicating that it is the inactive relationship. This relationship will never be used unless explicitly declared in a measure.
+See RiverPoint Inventory Tracker for USERELATIONSHIP example.
 
-To create this calculated measure for Sales by Ship Date, you can use the DAX function USERELATIONSHIP(). This function is used to specify a relationship to be used in a specific calculation and is done without overriding any existing relationships. It is a beneficial feature in that it allows developers to make additional calculations on inactive relationships by overriding the default active relationship between two tables in a DAX expression, as shown in the following example:
+MasterTracker has 4 item#s- need to match with CombinedInventory (ahi and pvs inventory files appended as new)
+created the 4 relationships combining the MasterTracker item numbers ([AHI Archive],[PVS Archive],[PIV MPN],[PIV PVS]) to CombinedInventory[Item#] - 3 of which could not be "active"
 
-Sales by Ship Date = CALCULATE(Sales[TotalPrice], USERELATIONSHIP('Calendar'[Date], Sales[ShipDate]))
+Needed to show which inventory was at AHI vs PVS.  On new product, shows if it has pulled through from Precision to the FCs. 
+AHIArchInv = CALCULATE(
+    SUM('CombinedInventory'[Qty]), 
+    USERELATIONSHIP ('CombinedInventory'[Item#], 'MasterTracker'[AHI Archive])
+    )
+   
+PIVMPNInv = CALCULATE(
+    SUM('CombinedInventory'[Qty]), 
+    USERELATIONSHIP ('CombinedInventory'[Item#], 'MasterTracker'[PIV MPN])
+    )
+
 
