@@ -129,3 +129,19 @@ if ([FY19C Units]>0 && ISBLANK([FY20C Units]), 0, divide([FY20C Units], [FY19C U
 
 
 19C20CYOY = DIVIDE(([FY20to19CU]),[FY20C Units])
+
+
+When you're needing to get a calculation from within the last N days, here's a quick formula for getting units sold in the last 30 days that you can use as a reference: 
+
+ 
+
+1MUnitsSold = CALCULATE( 
+  SUM('ALLSALES6M'[Qty]),  
+    filter ('ALLSALES6M', 
+    'ALLSALES6M'[InvoiceDate] > TODAY () - 30 && 
+    'ALLSALES6M'[InvoiceDate] < TODAY () 
+    ) 
+  ) 
+
+No, I didn't put a date table in this one because it's a very simple report with only one table that has a date. Otherwise it would reference the date table instead of the sales table. 
+
